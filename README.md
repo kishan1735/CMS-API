@@ -18,6 +18,9 @@
 | {{url}}api/v1/courses/course/:courseCode | PATCH | Unennrol Student to Course | Needed | professor |
 | {{url}}api/v1/courses/course/:courseCode/register | POST | Student Register to Course | Needed | student |
 | {{url}}api/v1/courses/course/:courseCode/register | PATCH | Student Deregister to Course | Needed | student |
+| {{url}}api/v1/courses/course/:courseCode/comments | POST | Student Post comment | Needed | student |
+| {{url}}api/v1/courses/course/:courseCode/comments | PATCH | Student Delete comment | Needed | student |
+| {{url}}api/v1/courses/course/:courseCode/profComments | PATCH | Professor Delete comment by time | Needed | professor |
 | {{url}}api/v1/courses/course/:courseCode/files | POST | Course contents Upload to Local and Firebase | Needed | professor |
 | {{url}}api/v1/courses/course/:courseCode/files | PATCH | Delete Course Contents from Local and Firebase | Needed | professor |
 
