@@ -27,5 +27,8 @@
 | {{url}}api/v1/courses/course/:courseCode/profComments | PATCH | Professor Delete comment by time | Needed | professor |
 | {{url}}api/v1/courses/course/:courseCode/files | POST | Course contents Upload to Local and Firebase | Needed | professor |
 | {{url}}api/v1/courses/course/:courseCode/files | PATCH | Delete Course Contents from Local and Firebase | Needed | professor |
+| {{url}}api/v1/user/updateMe | POST | Update Self | Needed | professor , student , admin |
+| {{url}}api/v1/user/deleteMe | DELETE | Deactivate Self | Needed | professor , student , adminr |
+
 
 
