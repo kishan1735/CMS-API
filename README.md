@@ -12,4 +12,8 @@
 | {{url}}api/v1/user/prof/professorCreate | POST | Create Professor according to User Model| Needed | admin |
 | {{url}}api/v1/user/prof/professorDelete | PATCH | Delete Professor by ID | Needed | admin |
 | {{url}}api/v1/user/prof/professorUpdate| PATCH | Update Professor Name | Needed | admin |
+| {{url}}api/v1/courses/create | POST | Create course according to Course Model | Needed | professor |
+| {{url}}api/v1/courses/delete | POST | Delete Course | Needed | professor |
+| {{url}}api/v1/courses/course/:courseCode/files | POST | Course contents Upload to Local and Firebase | Needed | professor|
+| {{url}}api/v1/courses/course/:courseCode/files | PATCH | Delete Course Contents from Local and Firebase | Needed | professor|
 
