@@ -14,6 +14,11 @@
 | {{url}}api/v1/user/prof/professorUpdate| PATCH | Update Professor Name | Needed | admin |
 | {{url}}api/v1/courses/create | POST | Create course according to Course Model | Needed | professor |
 | {{url}}api/v1/courses/delete | POST | Delete Course | Needed | professor |
-| {{url}}api/v1/courses/course/:courseCode/files | POST | Course contents Upload to Local and Firebase | Needed | professor|
-| {{url}}api/v1/courses/course/:courseCode/files | PATCH | Delete Course Contents from Local and Firebase | Needed | professor|
+| {{url}}api/v1/courses/course/:courseCode | POST | Enrol Student to Course | Needed | professor |
+| {{url}}api/v1/courses/course/:courseCode | PATCH | Unennrol Student to Course | Needed | professor |
+| {{url}}api/v1/courses/course/:courseCode/register | POST | Student Register to Course | Needed | student |
+| {{url}}api/v1/courses/course/:courseCode/register | PATCH | Student Deregister to Course | Needed | student |
+| {{url}}api/v1/courses/course/:courseCode/files | POST | Course contents Upload to Local and Firebase | Needed | professor |
+| {{url}}api/v1/courses/course/:courseCode/files | PATCH | Delete Course Contents from Local and Firebase | Needed | professor |
+
 
