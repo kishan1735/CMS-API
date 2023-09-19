@@ -2,7 +2,8 @@ const { promisify } = require("util");
 const User = require("../models/userModel");
 const jwt = require("jsonwebtoken");
 const crypto = require("crypto");
-// const sendEmail = require("../email");
+
+//Function for creating a JWT token
 
 const signToken = (id) => {
   return jwt.sign({ id }, process.env.JWT_SECRET, {
@@ -48,13 +49,13 @@ exports.login = async (req, res, next) => {
     if (!email || !password) {
       throw new Error("No email or password");
     }
-    // 2 Check if user exists and password is correct
+    // Check if user exists and password is correct
+
     const user = await User.findOne({
       id,
       email,
       active: { $ne: false },
     }).select("+password");
-    // const correct = await user.correctPassword(password, user.password);
 
     if (!user || !(await user.correctPassword(password, user.password))) {
       throw new Error("Unauthorised: Incorrect email or password or id");
@@ -78,7 +79,6 @@ exports.protect = async (req, res, next) => {
     // 1 Getting token and checking if it exists
     let token;
     //req.headers is what is sent along with the req
-    // console.log(req.headers.authorization.split(" ")[1]);
     if (
       req.headers.authorization &&
       req.headers.authorization.startsWith("Bearer")
@@ -90,6 +90,7 @@ exports.protect = async (req, res, next) => {
       throw new Error("You are not logged in! Please login to get access!!!");
     }
     // 2 Verification
+    //Getting the payload as we gave id in it in the signtoken
     const decoded = await promisify(jwt.verify)(token, process.env.JWT_SECRET);
     // 3 Check if user exists(user deleted in between or changes his password after token has been released)
     const freshUser = await User.findById(decoded.id);
@@ -194,17 +195,12 @@ exports.forgotPassword = async (req, res, next) => {
 exports.resetPassword = async (req, res, next) => {
   try {
     //1 Get user based on token
-    // const hashedToken = crypto
-    //   .createHash("sha256")
-    //   .update(req.params.token)
-    //   .digest("hex");
-    // console.log(hashedToken);
     const hashedToken = req.params.token;
     const user = await User.findOne({
       passwordResetToken: hashedToken,
       passwordResetExpires: { $gt: Date.now() },
     });
-    console.log(user);
+    // console.log(user);
     //2 Set new Password
     if (!user) {
       throw new error("Token is invalid or expired");

@@ -29,7 +29,6 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
     minlength: 8,
-    //Should figure out why he added this
     select: false,
   },
 
@@ -59,9 +58,11 @@ const userSchema = new mongoose.Schema({
   },
 });
 
+// Between the time of getting data and saving it to datbase
 userSchema.pre("save", async function (next) {
+  //If the password has not been modified then exit
   if (!this.isModified("password")) return next();
-  //12 is the cost parameter determines no of cycles to use the hash algorithm
+  //12 is the cost parameter(measure of how cpu intensive the operation will be) determines no of cycles to use the hash algorithm
   this.password = await bcrypt.hash(this.password, 12);
   //As we need this only for the validation
   this.passwordConfirm = undefined;
@@ -80,7 +81,7 @@ userSchema.methods.correctPassword = async function (
   candidatePassword,
   userPassword
 ) {
-  //candidate password is not hashed user password is
+  //not hashed first and hashed second
   return await bcrypt.compare(candidatePassword, userPassword);
 };
 
